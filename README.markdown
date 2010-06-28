@@ -4,16 +4,13 @@ dmForumPlugin
 Overview
 --------
 
-This is a port of dmForumPlugin for Doctrine & Symfony 1.4
+This is a port of sfDoctrineForumPlugin for Diem
 
 
 Requirements
 ------------
 
-The prerequisites for using the `dmForum` plugin are the same of dmForumplugin:
-
-  * You have to install and configure sfDoctrineGuardPlugin - http://www.symfony-project.org/plugins/sfDoctrineGuardPlugin
-  * If you want to use RSS feeds, you must install the sfFeed2Plugin - http://www.symfony-project.org/plugins/sfFeed2Plugin
+The prerequisites for using the `dmForumForum` plugin are the same as for any Diem plugin
 
 Installation
 ------------
