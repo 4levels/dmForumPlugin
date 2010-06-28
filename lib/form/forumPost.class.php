@@ -19,19 +19,17 @@ class forumPost extends PlugindmForumPostForm
     unset(
       $widgetSchema['created_at'],
       $widgetSchema['updated_at'],
-      $widgetSchema['author_name'],
-      $widgetSchema['user_id'],
-      $widgetSchema['title'],
-      $widgetSchema['forum_id']
+      $widgetSchema['created_by'],
+      $widgetSchema['updated_by'],
+      $widgetSchema['author_name']
     );
 
     unset(
       $validatorSchema['created_at'],
       $validatorSchema['updated_at'],
-      $validatorSchema['author_name'],
-      $validatorSchema['user_id'],
-      $validatorSchema['title'],
-      $validatorSchema['forum_id']
+      $validatorSchema['created_by'],
+      $validatorSchema['updated_by'],
+      $validatorSchema['author_name']
     );
     
     $widgetSchema['topic_id'] = new sfWidgetFormInputHidden();

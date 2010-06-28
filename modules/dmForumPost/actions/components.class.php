@@ -31,6 +31,7 @@ class dmForumPostComponents extends myFrontModuleComponents
   public function executeForm()
   {
     $this->form = $this->forms['DmForumPost'];
+    $this->form->setObject(new DmForumPost());
   }
 
 

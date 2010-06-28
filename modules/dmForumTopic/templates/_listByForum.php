@@ -20,10 +20,10 @@ echo _open('table.dm_forum');
     foreach ($dmForumTopicPager as $topic)
     {
       echo _open('tr');
-      echo _tag('td.title', _link($topic) . __('by') . ' ' . $topic->User->username);
+      echo _tag('td.title', _link($topic) . __('by') . ' ' . $topic->CreatedBy->username);
       echo _tag('td.count', -1 + $topic->getNbReplies());
       echo _tag('td.count', $topic->getNbViews());
-      echo _tag('td.last', time_ago_in_words($topic->getLastPost()->updated_at) . _tag('br') . __('by') . ' ' . $topic->getLastPost()->User->username);
+      echo _tag('td.last', time_ago_in_words($topic->getLastPost()->updated_at) . _tag('br') . __('by') . ' ' . $topic->getLastPost()->UpdatedBy->username);
       echo _close('tr');
     }
     echo _close('tbody');

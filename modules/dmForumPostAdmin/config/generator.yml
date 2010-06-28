@@ -16,9 +16,10 @@ generator:
         display:
           - '=title'
           - topic_id
-          - user_id
           - content
           - is_active
+          - created_by
+          - updated_by
           - created_at
           - updated_at
         sort:
@@ -33,12 +34,14 @@ generator:
           - is_active
           - content
           - topic_id
-          - user_id
+          - created_by
+          - updated_by
           - created_at
           - updated_at
       form:
         display:
-          NONE: [title, is_active, topic_id, user_id]
+          NONE: [title, is_active, topic_id]
+          User: [created_by, updated_by]
           Others: [content]
         class: DmForumPostAdminForm
         fields: {  }

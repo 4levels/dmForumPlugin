@@ -1,4 +1,5 @@
 <?php // Vars: $dmForumPostPager
+use_helper('Date');
 
 echo $dmForumPostPager->renderNavigationTop();
 
@@ -17,11 +18,11 @@ echo _open('table.dm_forum');
     foreach ($dmForumPostPager as $post)
     {
       echo _open('tr');
-      echo _tag('td.user', array('rowspan' => 2),  $post->User->username);
+      echo _tag('td.user', array('rowspan' => 2),  $post->CreatedBy->username);
       echo _tag('td.content', markdown($post->content));
       echo _close('tr');
       echo _open('tr.summary');
-      echo _tag('td', $post->created_at);
+      echo _tag('td', format_date($post->created_at));
       echo _close('tr');
     }
     echo _close('tbody');

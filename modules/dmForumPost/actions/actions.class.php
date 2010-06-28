@@ -7,7 +7,7 @@ class dmForumPostActions extends myFrontModuleActions
 
   public function executeFormWidget(dmWebRequest $request)
   {
-    $form = new DmForumPostForm();
+    $form = new forumPost();
         
     if ($request->hasParameter($form->getName()) && $form->bindAndValid($request))
     {

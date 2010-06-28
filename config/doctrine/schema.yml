@@ -3,7 +3,8 @@ DmForumCategory:
     Timestampable:
     Sluggable:
       fields: [ name ]
-    DmSortable:
+    NestedSet:
+      hasManyRoots: true
   columns:
     name:
       type: string
@@ -22,6 +23,7 @@ DmForumForum:
     Sluggable:
       fields: [ name ]
     DmSortable:
+    DmBlameable:
   columns:
     name:          
       type: string
@@ -36,25 +38,12 @@ DmForumForum:
     category_id:
       type: integer
       notnull: true
-#    latest_post_id: integer
-#    nb_posts:
-#      type: integer
-#      default: 0
-#    nb_topics:
-#      type: integer
-#      default: 0
   relations:
     Category:
       class: DmForumCategory
       local: category_id
       foreignAlias: Forums
       onDelete: CASCADE
-#    LatestPost:
-#      class: DmForumPost
-#      local: latest_post_id
-#      foreignAlias: Forums
-#      type: one
-#      onDelete: SET NULL
 
 
 DmForumTopic:
@@ -62,6 +51,9 @@ DmForumTopic:
     Timestampable:
     Sluggable:
       fields: [ title ]
+    DmBlameable:
+    DmVersionable:
+    DmTaggable:
   columns:
     title:
       type: string
@@ -81,36 +73,19 @@ DmForumTopic:
       notnull: true
     user_id:
       type: integer
-    # performance enhancers
-#    latest_post_id: integer
-#    nb_posts:
-#      type: integer
-#      default: 0
-#    nb_views:
-#      type: integer
-#      default: 0
   relations:
     Forum:
       class: DmForumForum
       local: forum_id
       foreignAlias: Topics
       onDelete: CASCADE
-    User:
-      class: DmUser
-      local: user_id
-      foreignAlias: Topics
-      onDelete: SET NULL
- #   LatestPost:
- #     class: DmForumPost
- #     local: latest_post_id
- #     foreignAlias: Topics
- #     type: one
- #     onDelete: SET NULL
-
 
 DmForumPost:
   actAs:
     Timestampable:
+    DmBlameable:
+    DmVersionable:
+    DmTaggable:
   columns:
     title:
       type: string
@@ -125,28 +100,12 @@ DmForumPost:
     topic_id:
       type: integer
       notnull: true
-    user_id:
-      type: integer
-      notnull: true
-#    forum_id:      integer
   relations:
     Topic:
       class: DmForumTopic
       local: topic_id
       foreignAlias: Posts
       onDelete: CASCADE
-#    Forum:
-#      class: DmForumForum
-#      local: forum_id
-#      foreignAlias: Posts
-#      type: one
-#      onDelete: CASCADE
-    User:
-      class: DmUser
-      local: user_id
-      foreignAlias: Posts
-      onDelete: CASCADE
-
 
 DmForumTopicView:
   actAs:

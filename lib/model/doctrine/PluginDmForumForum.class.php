@@ -34,7 +34,7 @@ abstract class PluginDmForumForum extends BaseDmForumForum
     return Doctrine::getTable('DmForumPost')
       ->createQuery('p')
       ->select('p.*, u.username')
-      ->leftJoin('p.User u')
+      //->leftJoin('p.User u')
       ->leftJoin('p.Topic t')
       ->where('p.is_active = ?', true)
       ->where('t.is_active = ?', true)

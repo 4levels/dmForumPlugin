@@ -23,7 +23,7 @@ foreach ($dmForumCategoryPager as $dmForumCategory)
        echo _tag('td.title', _link($board) . $board->description);
        echo _tag('td.count', str_pad($board->getNbTopics(), 1, '0'));
        echo _tag('td.count', $board->getNbPosts());
-       echo _tag('td.last', $board->getNbPosts() ? time_ago_in_words($board->getLastUpdatedPost()->updated_at) . _tag('br') . __('by') . ' ' . $board->getLastUpdatedPost()->User->username : null);
+       echo _tag('td.last', $board->getNbPosts() ? time_ago_in_words($board->getLastUpdatedPost()->updated_at) . _tag('br') . __('by') . ' ' . $board->getLastUpdatedPost()->UpdatedBy->username : null);
       echo _close('tr');
     }
     echo _close('tbody');
