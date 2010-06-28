@@ -1,6 +1,13 @@
 dmForumPlugin
 ========================================================
 
+Warning
+-------
+
+This plugin is far from finished!
+It still needs a lot of refactoring as most of the ported features have to be completely rewritten
+as Diem provides so many helpers and functionality so that most of the original `sfForumPlugin` and `sfDoctrineForumPlugin` features are superfluous.
+
 Overview
 --------
 
@@ -25,8 +32,7 @@ Enabled it in `ProjectConfiguration.class.php`
       public function setup()
       {
         $this->enablePlugins(array(
-          'sfDoctrinePlugin', 
-          'sfDoctrineGuardPlugin',
+          '...'
           'dmForumPlugin',
           '...'
         ));
@@ -35,42 +41,15 @@ Enabled it in `ProjectConfiguration.class.php`
 
 Rebuild the model, generate the SQL code for the new tables, insert it into your database and load the included fixtures :
     
-    $ php symfony doctrine:build --all --and-load
+    $ php symfony dm:setup --clear-db
+    $ php symfony doctrine:data-load
 
 Clear the cache to enable the autoloading to find the new classes:
     
-    $ php symfony cc
+    $ php symfony ccc
 
 Enable the new `dmForum` module and the new `dmForum` helper in your application, via the `settings.yml` file.
     
-    [yml]
-    // in myproject/apps/frontend/config/settings.yml
-    all:
-      .settings:
-        enabled_modules:        [dmForum, default]
-        standard_helpers:       [Partial, Cache, dmForum, I18N]
-
 Publish assets for the forum
 
     $ php symfony plugin:publish-assets
-
-As for now, fixtures aren't filed right all database's field, run this task that update last reply, nb posts, etc ..
-
-    $ php symfony forum:fix
-
-Start using the plugin by browsing to the frontend module's default page:
-     
-    http://myproject/frontend_dev.php/dmForum
-
-If you want to enable the plugin administration interface, you have to enable two more modules. You can do so in your main application or in a backend application. the following example is for a 'backend' application:
-
-    [yml]
-    // in myproject/apps/backend/config/settings.yml
-    all:
-      .settings:
-        enabled_modules:        [dmForumCategoryAdmin, dmForumForumAdmin, default]
-
-Configure the plugin categories and forums by browsing to the administration modules default page:
-     
-    http://myproject/backend_dev.php/dmForumCategoryAdmin
-    http://myproject/backend_dev.php/dmForumForumAdmin
