@@ -1,0 +1,172 @@
+DmForumCategory:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields: [ name ]
+    DmSortable:
+  columns:
+    name:
+      type: string
+      length: 255
+      notnull: true
+    description:
+      type: string
+      extra: markdown
+    is_active:
+      type: boolean
+      default: 1
+
+DmForumForum:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields: [ name ]
+    DmSortable:
+  columns:
+    name:          
+      type: string
+      length: 255
+      notnull: true
+    description:
+      type: string
+      extra: markdown
+    is_active:
+      type: boolean
+      default: 1
+    category_id:
+      type: integer
+      notnull: true
+#    latest_post_id: integer
+#    nb_posts:
+#      type: integer
+#      default: 0
+#    nb_topics:
+#      type: integer
+#      default: 0
+  relations:
+    Category:
+      class: DmForumCategory
+      local: category_id
+      foreignAlias: Forums
+      onDelete: CASCADE
+#    LatestPost:
+#      class: DmForumPost
+#      local: latest_post_id
+#      foreignAlias: Forums
+#      type: one
+#      onDelete: SET NULL
+
+
+DmForumTopic:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields: [ title ]
+  columns:
+    title:
+      type: string
+      length: 255
+      notnull: true
+    is_active:
+      type: boolean
+      default: 1
+    is_sticked:
+      type: boolean
+      default: 0
+    is_locked:     
+      type: boolean
+      default: 0
+    forum_id:
+      type: integer
+      notnull: true
+    user_id:
+      type: integer
+    # performance enhancers
+#    latest_post_id: integer
+#    nb_posts:
+#      type: integer
+#      default: 0
+#    nb_views:
+#      type: integer
+#      default: 0
+  relations:
+    Forum:
+      class: DmForumForum
+      local: forum_id
+      foreignAlias: Topics
+      onDelete: CASCADE
+    User:
+      class: DmUser
+      local: user_id
+      foreignAlias: Topics
+      onDelete: SET NULL
+ #   LatestPost:
+ #     class: DmForumPost
+ #     local: latest_post_id
+ #     foreignAlias: Topics
+ #     type: one
+ #     onDelete: SET NULL
+
+
+DmForumPost:
+  actAs:
+    Timestampable:
+  columns:
+    title:
+      type: string
+      length: 255
+    content:
+      type: string
+      notnull: true
+      extra: markdown
+    is_active:
+      type: boolean
+      default: 1
+    topic_id:
+      type: integer
+      notnull: true
+    user_id:
+      type: integer
+      notnull: true
+#    forum_id:      integer
+  relations:
+    Topic:
+      class: DmForumTopic
+      local: topic_id
+      foreignAlias: Posts
+      onDelete: CASCADE
+#    Forum:
+#      class: DmForumForum
+#      local: forum_id
+#      foreignAlias: Posts
+#      type: one
+#      onDelete: CASCADE
+    User:
+      class: DmUser
+      local: user_id
+      foreignAlias: Posts
+      onDelete: CASCADE
+
+
+DmForumTopicView:
+  actAs:
+    Timestampable:
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    topic_id:
+      type: integer
+      primary: true
+  relations:
+    Topic:
+      class: DmForumTopic
+      local: topic_id
+      foreignAlias: Posts
+      onDelete: CASCADE
+    User:
+      class: DmUser
+      local: user_id
+      foreignAlias: Posts
+      onDelete: CASCADE
+

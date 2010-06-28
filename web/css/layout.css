@@ -1,0 +1,55 @@
+/*FORUM STYLES*/
+.dm_forum_category_list {}
+.dm_forum_category_list dl dt,
+.dm_forum_category_list dl dd {
+  float: left;
+  width: 100%;
+}
+.dm_forum_category_list dl dt {
+  border-bottom: solid 1px #ddd;
+}
+.dm_forum_category_list dl dd {
+  border-bottom: solid 1px #eee;
+}
+.dm_forum_category_list dl dt span,
+.dm_forum_category_list dl dd span {
+  display: block;
+  float:left;
+  padding: .5em 1%;
+}
+
+.dm_forum_category_list dl dt span {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dm_forum_category_list dl dt span h3 a,
+.dm_forum_category_list dl dd span h3 a {
+  font-weight: bold;
+  font-size: 14px;
+}
+.dm_forum_category_list dl dt span.title,
+.dm_forum_category_list dl dd span.title {
+  width: 58%;
+}
+.dm_forum_category_list dl dd span.title {
+  width: 53%;
+  padding-left: 5%;
+}
+.dm_forum_category_list dl dt span.count,
+.dm_forum_category_list dl dd span.count {
+  width: 8%;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+.dm_forum_category_list dl dd span.count {
+  padding-top: 1em;
+}
+.dm_forum_category_list dl dt span.last,
+.dm_forum_category_list dl dd span.last {
+  width: 18%;
+  text-align: right;
+}
+.dm_forum_category_list dl dd span.last {
+}

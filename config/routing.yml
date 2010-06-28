@@ -1,0 +1,52 @@
+# forums
+#forum_latest_topics:
+#  url:  /forums/latest-topics
+#  param: { module: dmForum, action: latestTopics }
+
+#forum_latest_posts:
+#  url:  /forums/latest-posts
+#  param: { module: dmForum, action: latestPosts }
+
+#forum_latest_posts_feed:
+#  url:  /forums/latest-posts-feed
+#  param: { module: dmForum, action: latestPostsFeed }
+
+#forum_home:
+#  url:  /forums
+#  param: { module: dmForum, action: index }
+
+#forum_home_list:
+#  url:  /forums
+#  param: { module: dmForum, action: forumList }
+
+#forum_name:
+#  url:  /forums/:forum_name
+#  param: { module: dmForum, action: forum }
+
+#forum_name_last:
+#  url:  /forums/:forum_name/lastest-posts
+#  param: { module: dmForum, action: forumLatestPosts }
+
+#forum_name_last_feed:
+#  url:  /forums/:forum_name/lastest-posts-feed
+#  param: { module: dmForum, action: forumLatestPostsFeed }
+
+#forum_topic:
+#  url:  /forums/topic/:id/:stripped_title
+#  param: { module: dmForum, action: topic }
+
+#forum_message:
+#  url:  /forums/view-post/:id
+#  param: { module: dmForum, action: post }
+
+#forum_new_topic:
+#  url:  /forums/new-topic/:forum_name
+#  param: { module: dmForum, action: createTopic }
+
+#forum_user:
+#  url:  /user/:username/posts
+#  param: { module: dmForum, action: userLatestPosts }
+
+#forum_user_topics:
+#  url:  /user/:username/topics
+#  param: { module: dmForum, action: userLatestTopics }

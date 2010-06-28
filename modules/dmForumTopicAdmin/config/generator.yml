@@ -1,0 +1,56 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: DmForumTopic
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: dm_forum_topic
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        is_active:
+          label: Active
+        is_sticked:
+          label: Sticked
+        is_locked:
+          label: Locked
+      list:
+        display:
+          - '=title'
+          - forum_id
+          - user_id
+          - posts_list
+          - is_active
+          - is_sticked
+          - is_locked
+          - created_at
+          - updated_at
+          - slug
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - title
+          - is_active
+          - is_sticked
+          - is_locked
+          - forum_id
+          - user_id
+          - created_at
+          - updated_at
+          - slug
+      form:
+        display:
+          NONE: [title, is_active, is_sticked, is_locked, forum_id, user_id]
+          Posts: [posts_list]
+          Others: [slug]
+        class: DmForumTopicAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

@@ -1,0 +1,50 @@
+System:
+
+  Security:
+
+    dmUser:
+      name:             User
+      credentials:      security_user
+      components:
+        signin:
+        form:           { name: "Register" }
+        forgotPassword:
+        dashboard:
+        info:
+
+Content:
+
+  Forum:
+
+    DmForumCategory:
+      name:                   Forum|Forum
+      page:                   true
+      components:
+        list:
+
+    DmForumForum:
+      name:                   Board
+      page:                   true
+      parent:                 DmForumCategory
+      components:
+        listByCategory:
+          filters:            [ DmForumCategory ]
+
+    DmForumTopic:
+      name:                   Topic
+      page:                   true
+      parent:                 DmForumForum
+      components:
+        listByForum:
+          filters:            [ DmForumForum ]
+        show:
+        form:
+
+    DmForumPost:
+      name:                   Post
+      components:
+        list:
+        listByTopic:
+          filters:            [ DmForumTopic ]
+        show:
+        form:
