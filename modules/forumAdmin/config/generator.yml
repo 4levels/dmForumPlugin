@@ -1,0 +1,52 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: DmForumForum
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: forum
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        is_active:
+          label: Active
+      list:
+        display:
+          - '=name'
+          - board_id
+          - created_by
+          - updated_by
+          - topics_list
+          - description
+          - is_active
+          - created_at
+          - updated_at
+          - slug
+        sort:
+          - position
+          - asc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: true
+      filter:
+        display:
+          - name
+          - is_active
+          - description
+          - board_id
+          - created_at
+          - updated_at
+          - slug
+          - created_by
+          - updated_by
+      form:
+        display:
+          NONE: [name, is_active, board_id, created_by, updated_by]
+          Topics: [topics_list]
+          Others: [description, slug]
+        class: DmForumForumAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

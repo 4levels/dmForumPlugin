@@ -1,10 +1,8 @@
-DmForumCategory:
+DmForumBoard:
   actAs:
     Timestampable:
     Sluggable:
       fields: [ name ]
-    NestedSet:
-      hasManyRoots: true
   columns:
     name:
       type: string
@@ -22,6 +20,8 @@ DmForumForum:
     Timestampable:
     Sluggable:
       fields: [ name ]
+    NestedSet:
+      hasManyRoots: true
     DmSortable:
     DmBlameable:
   columns:
@@ -35,13 +35,13 @@ DmForumForum:
     is_active:
       type: boolean
       default: 1
-    category_id:
+    board_id:
       type: integer
       notnull: true
   relations:
-    Category:
-      class: DmForumCategory
-      local: category_id
+    Board:
+      class: DmForumBoard
+      local: board_id
       foreignAlias: Forums
       onDelete: CASCADE
 
@@ -66,6 +66,9 @@ DmForumTopic:
       type: boolean
       default: 0
     is_locked:     
+      type: boolean
+      default: 0
+    is_approved:
       type: boolean
       default: 0
     forum_id:
@@ -97,6 +100,9 @@ DmForumPost:
     is_active:
       type: boolean
       default: 1
+    is_approved:
+      type: boolean
+      default: 0
     topic_id:
       type: integer
       notnull: true

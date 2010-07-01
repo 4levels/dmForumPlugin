@@ -37,44 +37,52 @@ dmUser:
 #dmUserGroup:
 #dmGroupPermission:
 
-dmForumCategory:
-  c1:
+dmForumBoard:
+  b1:
     name:        Public Boards
     description: We talk about stuff here.
-    root_id:     1
-    lft:         1
-    rgt:         2
-    level:       0
 
-  c2:
+  b2:
     name:        Miscellaneous
     description: Secret matters
-    root_id:     2
-    lft:         1
-    rgt:         2
-    level:       0
 
 dmForumForum:
   f1:
     name:        Foo discussion
     description: Everybody is foo here
-    Category:    c1
+    Board:       b1
+    root_id:     1
+    lft:         1
+    rgt:         2
+    level:       0
     position:    1
   f2:
     name:        Bar discussion
     description: If you want a bar, this is where you will find it
-    Category:    c1
+    Board:       b1
     position:    2
+    root_id:     2
+    lft:         1
+    rgt:         2
+    level:       0
   f3:
     name:        General discussion
     description: "If you don't know where to write, try here"
-    Category:    c2
+    Board:       b2
     position:    3
+    root_id:     3
+    lft:         1
+    rgt:         2
+    level:       0
   f4:
     name:        Empty discussion
     description: This discussion is empty but should still appear in the forum list
-    Category:    c2
+    Board:       b2
     position:    4
+    root_id:     4
+    lft:         1
+    rgt:         2
+    level:       0
 
 dmForumTopic:
   topic_1:
@@ -89,6 +97,7 @@ dmForumTopic:
     title:       Foo forever
     Forum:       f1
     created_by:  2
+    is_approved: false
   topic_4:
     title:       Chocolate bar
     Forum:       f2
@@ -128,6 +137,7 @@ dmForumPost:
     content: |
       No, you're hopeless
     created_by:  2
+    is_approved: false
   post_5:
     Topic:    topic_2
     content: |

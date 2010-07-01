@@ -1,4 +1,4 @@
 default:
 
   stylesheets:
-    - /dmForumPlugin/css/layout.css
+    - /dmForumPlugin/css/stylesheet.css

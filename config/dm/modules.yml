@@ -4,6 +4,7 @@ System:
 
     dmUser:
       name:             User
+      page:             true
       credentials:      security_user
       components:
         signin:
@@ -16,35 +17,39 @@ Content:
 
   Forum:
 
-    DmForumCategory:
-      name:                   Forum|Forum
+    board:
+      model:                  DmForumBoard
+      name:                   Board|Board
       page:                   true
       components:
         list:
 
-    DmForumForum:
-      name:                   Board
+    forum:
+      model:                  DmForumForum
+      name:                   Forum
       page:                   true
-      parent:                 DmForumCategory
+      parent:                 board
       components:
         listByCategory:
-          filters:            [ DmForumCategory ]
+          filters:            [ board ]
 
-    DmForumTopic:
+    topic:
+      model:                  DmForumTopic
       name:                   Topic
       page:                   true
-      parent:                 DmForumForum
+      parent:                 forum
       components:
         listByForum:
-          filters:            [ DmForumForum ]
+          filters:            [ forum ]
         show:
         form:
 
-    DmForumPost:
+    post:
+      model:                  DmForumPost
       name:                   Post
       components:
         list:
         listByTopic:
-          filters:            [ DmForumTopic ]
+          filters:            [ topic ]
         show:
         form:
