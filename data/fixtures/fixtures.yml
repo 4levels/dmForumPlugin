@@ -89,10 +89,12 @@ dmForumTopic:
     title:       Installing foo
     Forum:       f1
     created_by:  2
+    is_approved: true
   topic_2:
     title:       Bringing foo along
     Forum:       f1
     created_by:  2
+    is_approved: true
   topic_3:
     title:       Foo forever
     Forum:       f1
@@ -102,18 +104,22 @@ dmForumTopic:
     title:       Chocolate bar
     Forum:       f2
     created_by:  3
+    is_approved: true
   topic_5:
     title:       Energy bar
     Forum:       f2
     created_by:  3
+    is_approved: true
   topic_6:
     title:       Stick Moo
     Forum:       f2
     created_by:  4
     is_sticked:  true
+    is_approved: true
   topic_7:
     title:       Output Escaping
     Forum:       f3
+    is_approved: true
     created_by:  2
 
 dmForumPost:
@@ -122,16 +128,19 @@ dmForumPost:
     content: |
       When I install foo, it just <b>doesn't work</b>.<br />What did I do wrong?
     created_by:  3
+    is_approved: true
   post_2:
     Topic:    topic_1
     content: |
       Did you clear the cache? I don't know what that means, but it often helps...<br/>Or so they say!
     created_by:  2
+    is_approved: true
   post_3:
     Topic:    topic_1
     content: |
       Yes, I did that. Something else?
     created_by:  3
+    is_approved: true
   post_4:
     Topic:    topic_1
     content: |
@@ -144,26 +153,31 @@ dmForumPost:
       I often go out, and I'd like to take my foo with me.<br/>
       Would you advise against it?<br/>
       Some say a foo should not be let outside...
+    is_approved: true
     created_by:  2
   post_6:
     Topic:    topic_3
     content: |
       Everybody wants kung foo fighting
+    is_approved: true
     created_by:  2
   post_7:
     Topic:    topic_3
     content: |
       Man, I was about to say it
+    is_approved: true
     created_by:  4
   post_8:
     Topic:    topic_4
     content: |
       Isn't the chocolate bar the best of all bars?
+    is_approved: true
     created_by:  3
   post_9:
     Topic:    topic_5
     content: |
       I need some energy...
+    is_approved: true
     created_by:  3
   post_10:
     Topic:    topic_6
@@ -171,15 +185,18 @@ dmForumPost:
       This is a sample sticked topic. It should be on top of the topic list, 
       even though more recent topics exist. 
       Only users with moderator privilege can stick or unstick it (1 is a moderator).
+    is_approved: true
     created_by:  4
   post_11:
     Topic:    topic_4
     content: |
       I forgot to say: I need a bar
+    is_approved: true
     created_by:  3
   post_12:
     Topic:    topic_7
     content: |
       If you see no alert, it means that your output escaping is turned on<br>
       <script>alert('you should turn output escaping on to prevent XSS attacks')</script>
+    is_approved: true
     created_by:  2

@@ -23,6 +23,7 @@ generator:
           - tags_list
           - content
           - is_active
+          - is_approved
           - created_at
           - updated_at
         sort:
@@ -35,6 +36,7 @@ generator:
         display:
           - title
           - is_active
+          - is_approved
           - content
           - topic_id
           - created_at
@@ -43,7 +45,7 @@ generator:
           - updated_by
       form:
         display:
-          NONE: [title, is_active, topic_id, created_by, updated_by]
+          NONE: [title, is_active, is_approved, topic_id, created_by, updated_by]
           Tags: [tags]
           Others: [content]
         class: DmForumPostAdminForm

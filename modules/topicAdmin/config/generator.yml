@@ -27,6 +27,7 @@ generator:
           - posts_list
           - tags_list
           - is_active
+          - is_approved
           - is_sticked
           - is_locked
           - user_id
@@ -43,6 +44,7 @@ generator:
         display:
           - title
           - is_active
+          - is_approved
           - is_sticked
           - is_locked
           - forum_id
@@ -54,7 +56,7 @@ generator:
           - updated_by
       form:
         display:
-          NONE: [title, is_active, is_sticked, is_locked, forum_id, created_by, updated_by]
+          NONE: [title, is_active, is_approved, is_sticked, is_locked, forum_id, created_by, updated_by]
           Tags: [tags]
           Posts: [posts_list]
           Others: [user_id, slug]
