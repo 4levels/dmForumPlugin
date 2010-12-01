@@ -20,7 +20,7 @@ Requirements
 The prerequisites for using the `dmForum` plugin are the same as for any Diem plugin
 
 Also you need to install the following Diem plugins: 
-- dmTagPlugin 
+> - dmTagPlugin 
 
 
 Installation
