@@ -17,10 +17,11 @@ This is a port of sfDoctrineForumPlugin for Diem
 Requirements
 ------------
 
-The prerequisites for using the `dmForumForum` plugin are the same as for any Diem plugin
+The prerequisites for using the `dmForum` plugin are the same as for any Diem plugin
 
 Also you need to install the following Diem plugins: 
-> - dmTagPlugin
+- dmTagPlugin 
+
 
 Installation
 ------------
