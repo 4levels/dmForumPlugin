@@ -57,3 +57,6 @@ Enable the new `dmForum` module and the new `dmForum` helper in your application
 Publish assets for the forum
 
     $ php symfony plugin:publish-assets
+
+Include forum's stylesheet in apps/front/config/view.yml:
+    - /dmForumPlugin/css/stylesheet.css
