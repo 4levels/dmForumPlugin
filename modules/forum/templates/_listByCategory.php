@@ -21,7 +21,7 @@ echo $forumPager->renderNavigationTop(); ?>
       <ul class="topiclist forums">
         <?php foreach ($forumPager as $forum) { ?>
         <li class="row">
-          <dl class="icon" style="background-image: url({forumrow.FORUM_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+          <dl class="icon" style="background-image: url(<?php echo '/' . sfConfig::get('sf_upload_dir_name') . '/' . $forum->Image ?>); background-repeat: no-repeat;">
             <dt title="<?php echo $forum ?>">
             <!-- IF S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED <a class="feed-icon-forum" title="{L_FEED} - {forumrow.FORUM_NAME}" href="{U_FEED}?f={forumrow.FORUM_ID}"><img src="{T_THEME_PATH}/images/feed.gif" alt="{L_FEED} - {forumrow.FORUM_NAME}" /></a> -->
 

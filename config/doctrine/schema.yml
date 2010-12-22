@@ -38,12 +38,19 @@ DmForumForum:
     board_id:
       type: integer
       notnull: true
+    image_id:
+      type: integer
   relations:
     Board:
       class: DmForumBoard
       local: board_id
       foreignAlias: Forums
       onDelete: CASCADE
+    Image:
+      class: DmMedia
+      local: image_id
+      foreignAlias: Images
+      onDelete: RESTRICT
 
 
 DmForumTopic:
