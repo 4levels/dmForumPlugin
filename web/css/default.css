@@ -1,7 +1,7 @@
 .dmForum, .dmForum td
 {
   font-family: 'Lucida Grande', 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 0.9em;
 }
 
 .dmForum th
@@ -169,13 +169,13 @@ ul.post_actions li
   font-size: 0.9em;
 }
 
-ul.post_actions li::before
+ul.post_actions li:before
 {
   color: lightgrey;
   content: ' - ';
 }
 
-ul.post_actions li:first-child::before
+ul.post_actions li:first-child:before
 {
   content: '';
 }
