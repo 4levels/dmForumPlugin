@@ -1,5 +1,7 @@
 <?php // Vars: $forumPager
 
+use_helper('Date');
+
 echo $forumPager->renderNavigationTop(); ?>
 
 <?php #foreach ($boardPager as $board) { ?>
