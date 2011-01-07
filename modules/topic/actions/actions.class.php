@@ -18,7 +18,10 @@ class topicActions extends myFrontModuleActions
     $this->forms['DmForumTopic'] = $form;
   }
 
-  public function executeListByForum(dmWebRequest $request) {
-      var_dump($request);
+  public function executeShowWidget(dmWebRequest $request) {
+      /* @var $record dmDoctrineRecord */
+      $record = $this->context->getPage()->getRecord();
+      $record->set('views', $record->views + 1)->save();
+      
   }
 }

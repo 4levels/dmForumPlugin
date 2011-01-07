@@ -15,8 +15,7 @@ class topicComponents extends myFrontModuleComponents
     
     $topic = $this->getRecord($query);
     $this->forum = $topic->getForum();
-
-
+    
   }
 
   public function executeShow()
