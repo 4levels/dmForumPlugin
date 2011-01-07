@@ -35,6 +35,9 @@ DmForumForum:
     is_active:
       type: boolean
       default: 1
+    show_description:
+      type: boolean
+      default: 1
     board_id:
       type: integer
       notnull: true
@@ -49,7 +52,7 @@ DmForumForum:
     Image:
       class: DmMedia
       local: image_id
-      foreignAlias: Images
+      foreignAlias: Forums
       onDelete: RESTRICT
 
 

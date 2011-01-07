@@ -16,6 +16,7 @@ generator:
         display:
           - '=name'
           - board_id
+          - image_id_view
           - created_by
           - updated_by
           - topics_list

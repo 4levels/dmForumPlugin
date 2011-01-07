@@ -35,7 +35,7 @@ echo $forumPager->renderNavigationTop(); ?>
             <dd class="topics"><?php echo $forum->NbTopics ?> <dfn><?php echo __('Topics') ?></dfn></dd>
             <dd class="posts"><?php echo $forum->NbPosts ?> <dfn><?php echo __('Posts') ?></dfn></dd>
             <dd class="lastpost"><span>
-                <?php if ($forum->NbUnapprovedTopics) { ?><img src="/dmForumPlugin/images/icons/icon_topic_unapproved.gif" alt="<?php echo __('At least one topic is not apprived in this forum') ?>" /><?php } ?>
+                <?php if ($forum->NbUnapprovedTopics) { ?><img src="/dmForumPlugin/images/icons/icon_topic_unapproved.gif" alt="<?php echo __('At least one topic is not approved in this forum') ?>" /><?php } ?>
                 <?php if ($forum->NbPosts) { ?>
                 <!-- IF forumrow.LAST_POST_TIME --><dfn><?php echo __('Last post') ?></dfn> <?php echo __('by') ?> <?php echo _link($forum->LastPost->UpdatedBy->id ? $forum->LastPost->UpdatedBy : $forum->LastPost->CreatedBy) ?>
                 <!-- IF not S_IS_BOT --><?php echo _link($forum->LastPost->Topic) ?> <!-- ENDIF --><br /><?php echo format_datetime($forum->LastPost->updated_at) ?>
