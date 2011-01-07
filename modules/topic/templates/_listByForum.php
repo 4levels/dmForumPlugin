@@ -4,7 +4,7 @@
 <div>
 	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body -->
 	<!-- IF FORUM_DESC --><div style="display: none !important;">{FORUM_DESC}<br /></div><!-- ENDIF -->
-	<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</p><!-- ENDIF -->
+	<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR --><?php echo __('Moderator'); ?><!-- ELSE --><?php echo __('Moderators'); ?><!-- ENDIF -->:</strong> {MODERATORS}</p><!-- ENDIF -->
 </div>
 <!-- ENDIF -->
 
@@ -21,10 +21,10 @@ echo $topicPager->renderNavigationTop();
 		<ul class="topiclist">
 			<li class="header">
 				<dl class="icon">
-					<dt><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
-					<dd class="posts">{L_REPLIES}</dd>
-					<dd class="views">{L_VIEWS}</dd>
-					<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+					<dt><!-- IF S_DISPLAY_ACTIVE --><?php echo __('Active Topics'); ?><!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) --><?php echo __('Announcements'); ?><!-- ELSE --><?php echo __('Topics'); ?><!-- ENDIF --></dt>
+					<dd class="posts"><?php echo __('Posts'); ?></dd>
+					<dd class="views"><?php echo __('Views'); ?></dd>
+					<dd class="lastpost"><span><?php echo __('Last Post'); ?></span></dd>
 				</dl>
 			</li>
 		</ul>
@@ -44,11 +44,11 @@ foreach ($topicPager as $topic)
 					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
 					<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
-					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
+					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF --><?php echo __('by'); ?> {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
 				</dt>
-				<dd class="posts"><?php $topic->Posts->count() ?> <dfn>{L_REPLIES}</dfn></dd>
-				<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
-				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+				<dd class="posts"><?php $topic->Posts->count() ?> <dfn><?php echo __('Replies') ?></dfn></dd>
+				<dd class="views">{topicrow.VIEWS} <dfn><?php echo __('Views') ?></dfn></dd>
+				<dd class="lastpost"><span><dfn><?php echo __('Last post') ?> </dfn><?php echo __('by') ?> {topicrow.LAST_POST_AUTHOR_FULL}
 					<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{topicrow.LAST_POST_TIME}</span>
 				</dd>
 			</dl>
@@ -61,17 +61,6 @@ foreach ($topicPager as $topic)
 
 
 
-<?php echo _open('ul.elements');
-
-foreach ($topicPager as $topic)
-{
-  echo _open('li.element');
-
-    echo _link($topic);
-
-  echo _close('li');
-}
-
-echo _close('ul');
+<?php 
 
 echo $topicPager->renderNavigationBottom();
