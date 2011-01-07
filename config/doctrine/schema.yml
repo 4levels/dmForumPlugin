@@ -81,6 +81,9 @@ DmForumTopic:
     is_approved:
       type: boolean
       default: 0
+    views:
+      type: integer
+      default: 0
     forum_id:
       type: integer
       notnull: true

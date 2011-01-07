@@ -12,6 +12,11 @@ class topicComponents extends myFrontModuleComponents
     $query = $this->getListQuery();
     
     $this->topicPager = $this->getPager($query);
+    
+    $topic = $this->getRecord($query);
+    $this->forum = $topic->getForum();
+
+
   }
 
   public function executeShow()

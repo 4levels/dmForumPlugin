@@ -18,5 +18,7 @@ class topicActions extends myFrontModuleActions
     $this->forms['DmForumTopic'] = $form;
   }
 
-
+  public function executeListByForum(dmWebRequest $request) {
+      var_dump($request);
+  }
 }
