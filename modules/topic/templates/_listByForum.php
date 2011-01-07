@@ -1,4 +1,7 @@
-<?php // Vars: $topicPager, $forum ?>
+<?php
+// Vars: $topicPager, $forum
+use_helper('Date');
+?>
 
 <!-- FORUM HEADER -->
 <h2><?php echo _link($dm_page) ?></h2>
@@ -44,9 +47,9 @@ $topic_type = '';
                     <dt title="<?php echo $topic ?>">
                         <?php echo _link($topic)->set('.topictitle') ?>
                         <?php if (! $topic->is_approved): ?>
-                            <a href="{topicrow.U_MCP_QUEUE}"><a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a></a>
+                            <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
                         <?php endif; ?>
-			<?php echo __('by') ?> {topicrow.TOPIC_AUTHOR_FULL} &raquo; <?php echo $topic->created_at ?>
+			<?php echo __('by') ?> {topicrow.TOPIC_AUTHOR_FULL} &raquo; <?php echo format_datetime($topic->created_at) ?>
                     </dt>
                     <dd class="posts"><?php echo $topic->Posts->count() ?> <dfn><?php echo __('Replies') ?></dfn></dd>
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
@@ -57,7 +60,7 @@ $topic_type = '';
                             <a href="{topicrow.U_LAST_POST}">
                                 <img alt="<?php echo __('Read latest post') ?>" src="dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo $topic->updated_at ?></span>
+                            <br /><?php echo format_datetime($topic->updated_at) ?></span>
                     </dd>
 		</dl>
             </li>
@@ -75,7 +78,7 @@ $topic_type = '';
                         <?php if (! $topic->is_approved): ?>
                             <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
                         <?php endif; ?>
-			<?php echo __('by') ?> {topicrow.TOPIC_AUTHOR_FULL} &raquo; <?php echo $topic->created_at ?>
+			<?php echo __('by') ?> {topicrow.TOPIC_AUTHOR_FULL} &raquo; <?php echo format_datetime($topic->created_at) ?>
                     </dt>
                     <dd class="posts"><?php echo $topic->Posts->count() ?> <dfn><?php echo __('Replies') ?></dfn></dd>
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
@@ -86,7 +89,7 @@ $topic_type = '';
                             <a href="{topicrow.U_LAST_POST}">
                                 <img alt="<?php echo __('Read latest post') ?>" src="dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo $topic->updated_at ?></span>
+                            <br /><?php echo format_datetime($topic->updated_at) ?></span>
                     </dd>
 		</dl>
             </li>
