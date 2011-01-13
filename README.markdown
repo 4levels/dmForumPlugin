@@ -58,5 +58,10 @@ Publish assets for the forum
 
     $ php symfony plugin:publish-assets
 
-Include forum's stylesheet in apps/front/config/view.yml:
+Include default forum's stylesheet in apps/front/config/view.yml:
     - /dmForumPlugin/css/stylesheet.css
+
+If you use the default forum style comment out
+> echo $helper->renderArea('layout.right')
+and change the width in web/theme/css/layout.css inside the class .dm_page_content to 750px for a good look.
+
