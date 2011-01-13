@@ -33,6 +33,11 @@ Content:
         listByCategory:
           filters:            [ board ]
 
+    moderator:
+      model:                  DmForumModerator
+      name:                   Moderator
+      parent:                 Forum
+
     topic:
       model:                  DmForumTopic
       name:                   Topic

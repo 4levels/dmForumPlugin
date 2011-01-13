@@ -16,7 +16,7 @@ generator:
         display:
           - '=name'
           - board_id
-          - image_id_view
+          #- image_id_view
           - created_by
           - updated_by
           - topics_list
@@ -45,7 +45,8 @@ generator:
       form:
         display:
           NONE: [name, is_active, board_id, created_by, updated_by]
-          Image: [image_id_form, image_id_view]
+          #Image: [image_id_form, image_id_view]
+          Moderators: [moderators_list]
           Topics: [topics_list]
           Others: [description, slug]
         class: DmForumForumAdminForm

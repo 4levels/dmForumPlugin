@@ -54,6 +54,12 @@ DmForumForum:
       local: image_id
       foreignAlias: Forums
       onDelete: RESTRICT
+    Moderators:
+      class: DmForumModerator
+      local: forum_id
+      foreign: moderator_id
+      refClass: DmForumForumModerator
+      foreignAlias: Forums
 
 
 DmForumTopic:
@@ -95,6 +101,11 @@ DmForumTopic:
       local: forum_id
       foreignAlias: Topics
       onDelete: CASCADE
+    User:
+      class: DmUser
+      local: user_id
+      foreignAlias: Topics
+      onDelete: CASCADE
 
 DmForumPost:
   actAs:
@@ -119,23 +130,9 @@ DmForumPost:
     topic_id:
       type: integer
       notnull: true
-  relations:
-    Topic:
-      class: DmForumTopic
-      local: topic_id
-      foreignAlias: Posts
-      onDelete: CASCADE
-
-DmForumTopicView:
-  actAs:
-    Timestampable:
-  columns:
     user_id:
       type: integer
-      primary: true
-    topic_id:
-      type: integer
-      primary: true
+      notnull: true
   relations:
     Topic:
       class: DmForumTopic
@@ -148,3 +145,49 @@ DmForumTopicView:
       foreignAlias: Posts
       onDelete: CASCADE
 
+DmForumModerator:
+  actAs:
+    Timestampable:
+  columns:
+    user_id:
+      type: integer
+      notnull: true
+    is_global:
+      type: boolean
+      notnull: true
+      default: 1
+  relations:
+    Forums:
+      class: DmForumForum
+      local: moderator_id
+      foreign: forum_id
+      refClass: DmForumForumModerator
+      foreignAlias: Moderators
+    User:
+      class: DmUser
+      local: user_id
+      foreignAlias: Moderator
+
+DmForumForumModerator:
+  options:
+    symfony:
+      form: false
+      filter: false
+  actAs:
+    Timestampable:
+  columns:
+    moderator_id:
+      type: integer
+      notnull: true
+    forum_id:
+      type: integer
+      notnull: true
+  relations:
+    Moderator:
+      class: DmForumModerator
+      local: moderator_id
+      onDelete: CASCADE
+    Forum:
+      class: DmForumForum
+      local: forum_id
+      onDelete: CASCADE

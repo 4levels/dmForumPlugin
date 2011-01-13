@@ -1,0 +1,45 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: DmForumModerator
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: moderator
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        forums_list:
+          label: Forums
+        is_global:
+          label: Global
+      list:
+        display:
+          - '=id'
+          - user_id
+          - forums_list
+          - is_global
+          - created_at
+          - updated_at
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - id
+          - is_global
+          - user_id
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [is_global, user_id]
+          Forums: [forums_list]
+        class: DmForumModeratorAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

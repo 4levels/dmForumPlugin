@@ -15,6 +15,15 @@ class topicComponents extends myFrontModuleComponents
     
     $topic = $this->getRecord($query);
     $this->forum = $topic->getForum();
+
+    $this->nbModerators = $this->forum->Moderators->count();
+
+    $moderators = array();
+    foreach ($this->forum->Moderators as $moderator) {
+        $moderators[] = $this->getHelper()->link($moderator->User)->set('.username');
+    }
+
+    $this->moderators = implode(',', $moderators);
     
   }
 
