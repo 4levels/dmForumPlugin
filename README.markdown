@@ -63,5 +63,6 @@ Include default forum's stylesheet in apps/front/config/view.yml:
 
 If you use the default forum style comment out
 > echo $helper->renderArea('layout.right')
+
 and change the width in web/theme/css/layout.css inside the class .dm_page_content to 750px for a good look.
 
