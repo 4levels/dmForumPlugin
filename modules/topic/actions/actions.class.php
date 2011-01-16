@@ -43,4 +43,22 @@ class topicActions extends myFrontModuleActions
       $this->form = $form;
       
   }
+
+  public function executeApprove(dmWebRequest $request) {
+      $this->forward404Unless($request->isXmlHttpRequest());
+
+      $this->topicId = $request->getParameter('topic_id');
+      $this->topicApproved = false;
+      $this->topicDeleted = false;
+
+      if ($request->hasParameter('approve')) {
+          $topic = DmForumTopicTable::getInstance()->find($this->topicId);
+          $topic->set('is_approved', true)->save();
+          $this->topicApproved = true;
+      } elseif ($request->hasParameter('forbid')) {
+          $topic = DmForumTopicTable::getInstance()->find($this->topicId);
+          $topic->delete();
+          $this->topicDeleted = true;
+      }
+  }
 }

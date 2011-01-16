@@ -29,7 +29,7 @@ $nbModerators = $forum->Moderators->count();
             </p>
         <?php endif; ?>
         <p>
-            <input type="button" onclick="addTopic(<?php echo $forum->id ?>)" id="add_topic" value="<?php echo __('New Topic') ?>" />
+            <input class="button1 new-button" type="button" onclick="addTopic(<?php echo $forum->id ?>)" id="add_topic" value="<?php echo __('New Topic') ?>" />
         </p>
         <div id="new_topic_form"></div>
 </div>
@@ -60,12 +60,14 @@ $topic_type = '';
             foreach ($topicPager as $topic):
             if($topic->is_sticked):
             ?>
-            <li class="row <?php echo $row_class ?>">
+            <li id="topic-content-<?php echo $topic->id ?>" class="row <?php echo $row_class ?>">
                 <dl class="icon">
                     <dt title="<?php echo $topic ?>">
                         <?php echo _link($topic)->set('.topictitle') ?>
                         <?php if (! $topic->is_approved): ?>
-                            <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
+                            <a href="#" onclick="approveForumTopic(<?php echo $topic->id ?>, 'ask'); return false;">
+                                <img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" />
+                            </a>
                         <?php endif; ?>
                         <br />
 			<?php echo __('by') ?>&nbsp;
@@ -78,7 +80,7 @@ $topic_type = '';
                         <span>
                             <dfn><?php echo __('Last post') ?> </dfn>
                             <?php echo __('by') ?> <?php echo _link($topic->lastPost->User)->set('.username') ?>
-                            <a href="{topicrow.U_LAST_POST}">
+                            <a href="<?php echo _link($topic)->getHref() ?>">
                                 <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
                             <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->lastPost->created_at, 'T') ?>
@@ -93,12 +95,14 @@ $topic_type = '';
             foreach ($topicPager as $topic):
             if(! $topic->is_sticked):
             ?>
-            <li class="row <?php echo $row_class ?>">
+            <li id="topic-content-<?php echo $topic->id ?>" class="row <?php echo $row_class ?>">
                 <dl class="icon">
                     <dt title="<?php echo $topic ?>">
                         <?php echo _link($topic)->set('.topictitle') ?>
                         <?php if (! $topic->is_approved): ?>
-                            <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
+                            <a href="#" onclick="approveForumTopic(<?php echo $topic->id ?>, 'ask'); return false;">
+                                <img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" />
+                            </a>
                         <?php endif; ?>
                         <br />
 			<?php echo __('by') ?>&nbsp;
@@ -111,10 +115,10 @@ $topic_type = '';
                         <span>
                             <dfn><?php echo __('Last post') ?> </dfn>
                             <?php echo __('by') ?> <?php echo _link($topic->lastPost->User)->set('.username') ?>
-                            <a href="{topicrow.U_LAST_POST}">
+                            <a href="<?php echo _link($topic)->getHref() ?>">
                                 <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->created_at, 'T') ?>
+                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->lastPost->created_at, 'T') ?>
                         </span>
                     </dd>
 		</dl>

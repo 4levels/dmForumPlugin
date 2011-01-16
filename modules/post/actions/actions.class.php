@@ -79,5 +79,61 @@ class postActions extends myFrontModuleActions
       $this->form = $form;
   }
 
+  public function executeDelete(dmWebRequest $request) {
+      $this->forward404Unless($request->isXmlHttpRequest());
+
+      $this->postId = $request->getPostParameter('post_id');
+      $this->postDeleted = false;
+      
+      if ($request->getPostParameter('confirmed')) {
+          DmForumPostTable::getInstance()->findBy('id', $this->postId)
+                                         ->delete();
+
+          $this->postDeleted = true;
+      }
+  }
+
+  public function executeEdit(dmWebRequest $request) {
+      $this->forward404Unless($request->isXmlHttpRequest());
+
+      $form = new DmForumPostForm(Doctrine::getTable('DmForumPost')->find($request->getParameter('id')));
+
+      $form->setDefault('user_id', $form->getObject()->user_id);
+      $form->changeToHidden('user_id');
+
+      $form->setDefault('is_active', $form->getObject()->is_active);
+      $form->changeToHidden('is_active');
+
+      $form->setDefault('topic_id', $form->getObject()->topic_id);
+      $form->changeToHidden('topic_id');
+
+      $form->setDefault('is_approved', $form->getObject()->is_approved);
+      $form->changeToHidden('is_approved');
+
+
+      if ($request->hasParameter($form->getName()) && $form->bindAndValid($request)) {
+        $form->save();
+
+        $this->getUser()->setFlash('post_saved', true);
+      }
+
+      $this->form = $form;
+      $this->postId = $request->getParameter('id');
+  }
+
+  public function executeApprove(dmWebRequest $request) {
+      $this->forward404Unless($request->isXmlHttpRequest());
+
+      $this->postId = $request->getParameter('post_id');
+      $this->postApproved = false;
+
+      if ($request->hasParameter('approve')) {
+          $post = DmForumPostTable::getInstance()->find($this->postId);
+          $post->set('is_approved', true)->save();
+
+          $this->postApproved = true;
+      }
+  }
+
 
 }
