@@ -18,13 +18,6 @@ class topicActions extends myFrontModuleActions
     $this->forms['DmForumTopic'] = $form;
   }
 
-  public function executeShowWidget(dmWebRequest $request) {
-      /* @var $record dmDoctrineRecord */
-      $record = $this->context->getPage()->getRecord();
-      $record->set('views', $record->views + 1)->save();
-      
-  }
-
   public function executeAddNewTopic(dmWebRequest $request) {
       $this->forward404Unless($request->isXmlHttpRequest());
 

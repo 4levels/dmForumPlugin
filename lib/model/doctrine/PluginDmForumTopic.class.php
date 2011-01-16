@@ -12,42 +12,38 @@
  */
 abstract class PluginDmForumTopic extends BaseDmForumTopic
 {
-  public function getNbReplies() {
-    return Doctrine::getTable('DmForumPost')
-      ->createQuery('p')
-      ->where('p.is_active = ?', true)
-      ->where('p.topic_id = ?', $this->id)
-      ->count()
-    ;
-  }
-  public function getNbViews() {
-    return Doctrine::getTable('DmForumTopicView')
-      ->createQuery('v')
-      ->where('v.topic_id = ?', $this->id)
-      ->count()
-    ;
+  public function getLastPost() {
+    return Doctrine::getTable('DmForumPost')->createQuery('p')
+           ->select('p.*, u.username')
+           ->leftJoin('p.User u')
+           ->where('p.is_active = ?', true)
+           ->andWhere('p.topic_id = ?', $this->id)
+           ->andWhere('p.is_approved = ?', true)
+           ->orderBy('p.created_at')
+           ->fetchOne();
   }
 
-  public function getLastPost() {
-    return Doctrine::getTable('DmForumPost')
-      ->createQuery('p')
-      ->select('p.*, u.username')
-      ->leftJoin('p.User u')
-      ->where('p.is_active = ?', true)
-      ->where('p.topic_id = ?', $this->id)
-      ->orderBy('p.created_at')
-      ->fetchOne()
-    ;
-  }
   public function getLastUpdatedPost() {
-    return Doctrine::getTable('DmForumPost')
-      ->createQuery('p')
-      ->select('p.*, u.username')
-      //->leftJoin('p.User u')
-      ->where('p.is_active = ?', true)
-      ->where('p.topic_id = ?', $this->id)
-      ->orderBy('p.updated_at')
-      ->fetchOne()
-    ;
+    return Doctrine::getTable('DmForumPost')->createQuery('p')
+           ->select('p.*, u.username')
+           ->leftJoin('p.User u')
+           ->where('p.is_active = ?', true)
+           ->andWhere('p.topic_id = ?', $this->id)
+           ->andWhere('p.is_approved = ?', true)
+           ->orderBy('p.updated_at')
+           ->fetchOne();
+  }
+
+  public function getNbPosts() {
+    return $this->getPostsQuery()->count();
+  }
+
+  public function getPostsQuery($isApproved = true) {
+    $query = Doctrine_Core::getTable('DmForumPost')->createQuery('fp');
+    $query->where($query->getRootAlias().'.is_active = ?', true)
+          ->andWhere('fp.topic_id = ?', $this->id)
+          ->andWhere('fp.is_approved = ?', $isApproved);
+
+    return $query;
   }
 }

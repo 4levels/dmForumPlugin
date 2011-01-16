@@ -13,84 +13,50 @@
 abstract class PluginDmForumForum extends BaseDmForumForum
 {
   public function getTopics() {
-    return $this->getApprovedTopicsQuery()
-      ->execute()
-    ;
+      return $this->getTopicsQuery()->execute();
   }
 
   public function getPosts() {
-    return $this->getApprovedPostsQuery()
-      ->execute()
+    return $this->getPostsQuery()->execute()
     ;
   }
 
   public function getNbPosts() {
-    return $this->getApprovedPostsQuery()
-      ->count()
-    ;
+    return $this->getPostsQuery()->count();
   }
 
   public function getNbTopics() {
-    return $this->getApprovedTopicsQuery()->count();
+    return $this->getTopicsQuery()->count();
   }
 
   public function getNbUnapprovedTopics() {
-    $query = $this->getTopicsQuery();
-    return $query
-      ->andWhere($query->getRootAlias().'.is_approved = ?', false)
-      ->count();
+    return $this->getTopicsQuery(false)->count();
   }
 
   public function getLastPost() {
-    $query = $this->getApprovedPostsQuery();
-    return $query
-      ->orderBy($query->getRootAlias().'.updated_at')
-      ->fetchOne()
-    ;
-  }
-
-  public function getApprovedPostsQuery() {
     $query = $this->getPostsQuery();
-    $query->andWhere($query->getRootAlias().'.is_approved = ?', true)
-      ->andWhere('ft.is_approved = ?', true)
-      ;
-
-    return $query;
+    return $query->orderBy($query->getRootAlias().'.created_at')->fetchOne();
   }
-  public function getPostsQuery(Doctrine_Query $query = null) {
-    if (null === $query) {
-      $query = Doctrine_Core::getTable('DmForumPost')
-        ->createQuery('fp')
-        ;
-    }
+
+  public function getPostsQuery($isApproved = true) {
+    $query = Doctrine_Core::getTable('DmForumPost')->createQuery('fp');
     $query->leftJoin($query->getRootAlias().'.Topic ft')
-      ->where($query->getRootAlias().'.is_active = ?', true)
-      ->andWhere('ft.is_active = ?', true)
-      ->andWhere('ft.forum_id = ?', $this->id)
-      ;
+          ->where($query->getRootAlias().'.is_active = ?', true)
+          ->andWhere('ft.forum_id = ?', $this->id)
+          ->andWhere('ft.is_active = ?', true)
+          ->andWhere('ft.is_approved = ?', $isApproved)
+          ->andWhere('fp.is_approved = ?', $isApproved);
 
     return $query;
   }
 
-  public function getApprovedTopicsQuery() {
-    $query = $this->getTopicsQuery();
-    $query->where($query->getRootAlias().'.is_approved = ?', true)
-      ;
+  public function getTopicsQuery($isApproved = true) {
+      $query = Doctrine_Core::getTable('DmForumTopic')->createQuery('ft');
+      $query->where($query->getRootAlias().'.is_active = ?', true)
+            ->andWhere($query->getRootAlias().'.forum_id = ?', $this->id)
+            ->andWhere($query->getRootAlias(). '.is_approved = ?', $isApproved);
 
-    return $query;
-  }
-
-  public function getTopicsQuery(Doctrine_Query $query = null) {
-    if (null === $query) {
-      $query = Doctrine_Core::getTable('DmForumTopic')
-        ->createQuery('ft')
-        ;
-    }
-    $query->where($query->getRootAlias().'.is_active = ?', true)
-      ->andWhere($query->getRootAlias().'.forum_id = ?', $this->id)
-      ;
-
-    return $query;
+      return $query;
   }
 
 }

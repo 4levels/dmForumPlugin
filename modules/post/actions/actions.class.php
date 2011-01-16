@@ -18,6 +18,13 @@ class postActions extends myFrontModuleActions
     $this->forms['DmForumPost'] = $form;
   }
 
+  public function executeListByTopicWidget(dmWebRequest $request) {
+      /* @var $record dmDoctrineRecord */
+      $record = $this->context->getPage()->getRecord();
+      
+      $record->set('views', $record->views + 1)->save();
+  }
+
   public function executeAddNewPost(dmWebRequest $request) {
       $this->forward404Unless($request->isXmlHttpRequest());
 

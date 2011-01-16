@@ -13,8 +13,5 @@ abstract class PluginDmForumPostForm extends BaseDmForumPostForm
   public function setup()
   {
     parent::setup();
-    /*
-     * Here, the plugin form code
-     */
   }
 }

@@ -4,18 +4,17 @@ use_helper('Date');
 
 $root_dir = $sf_request->getRelativeUrlRoot();
 
-$nbModerators = $forum->Moderators;
+$nbModerators = $forum->Moderators->count();
 
 ?>
 
 <!-- FORUM HEADER -->
-<h2><?php echo _link($dm_page) ?></h2>
+<h2 class="forumtitle"><?php echo _link($dm_page) ?></h2>
 
-<!-- IF FORUM_DESC or MODERATORS or U_MCP -->
-<?php if(isset($forum->description)): ?>
 <div>
-	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body -->
-	<!-- IF FORUM_DESC --><div style="display: none !important;"><?php echo $forum->description ?><br /></div><!-- ENDIF -->
+	<?php if ($forum->show_description): ?>
+            <div class="forumdescription"><p><?php echo $forum->description ?></p></div>
+        <?php endif; ?>
 	<?php if($nbModerators > 0): ?>
             <p>
                 <strong>
@@ -34,8 +33,6 @@ $nbModerators = $forum->Moderators;
         </p>
         <div id="new_topic_form"></div>
 </div>
-<?php endif; ?>
-<!-- ENDIF -->
 
 <!-- TOPICS LIST -->
 <?php
@@ -70,9 +67,12 @@ $topic_type = '';
                         <?php if (! $topic->is_approved): ?>
                             <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
                         <?php endif; ?>
-			<?php echo __('by') ?> <?php echo _link($topic->User)->set('.username') ?> &raquo; <?php echo format_datetime($topic->created_at) ?>
+                        <br />
+			<?php echo __('by') ?>&nbsp;
+                        <?php echo _link($topic->User)->set('.username') ?> &raquo;
+                        <?php echo format_datetime($topic->created_at, 'p') . ' ' . format_datetime($topic->created_at, 'T') ?>
                     </dt>
-                    <dd class="posts"><?php echo $topic->Posts->count() ?> <dfn><?php echo __('Replies') ?></dfn></dd>
+                    <dd class="posts"><?php echo $topic->nbPosts ?> <dfn><?php echo __('Replies') ?></dfn></dd>
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
                     <dd class="lastpost">
                         <span>
@@ -81,7 +81,8 @@ $topic_type = '';
                             <a href="{topicrow.U_LAST_POST}">
                                 <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo format_datetime($topic->updated_at) ?></span>
+                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->lastPost->created_at, 'T') ?>
+                        </span>
                     </dd>
 		</dl>
             </li>
@@ -99,9 +100,12 @@ $topic_type = '';
                         <?php if (! $topic->is_approved): ?>
                             <a href="{topicrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
                         <?php endif; ?>
-			<?php echo __('by') ?> <?php echo _link($topic->User)->set('.username') ?> &raquo; <?php echo format_datetime($topic->created_at) ?>
+                        <br />
+			<?php echo __('by') ?>&nbsp;
+                        <?php echo _link($topic->User)->set('.username') ?> &raquo;
+                        <?php echo format_datetime($topic->created_at, 'p') . ' ' . format_datetime($topic->created_at, 'T') ?>
                     </dt>
-                    <dd class="posts"><?php echo $topic->Posts->count() ?> <dfn><?php echo __('Replies') ?></dfn></dd>
+                    <dd class="posts"><?php echo $topic->nbPosts ?> <dfn><?php echo __('Replies') ?></dfn></dd>
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
                     <dd class="lastpost">
                         <span>
@@ -110,7 +114,8 @@ $topic_type = '';
                             <a href="{topicrow.U_LAST_POST}">
                                 <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo format_datetime($topic->updated_at) ?></span>
+                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->created_at, 'T') ?>
+                        </span>
                     </dd>
 		</dl>
             </li>
