@@ -1,4 +1,4 @@
-<?php // Vars: $postPager
+<?php // Vars: $postPager, $topic
 
 use_helper('Date');
 
@@ -8,7 +8,9 @@ echo $postPager->renderNavigationTop();
 
 $row_class = 'bg1';
 ?>
-
+<h3 class="topictitle"><?php echo $topic->title ?></h3>
+<p><input type="button" onclick="addPost(<?php echo $topic->id ?>)" id="add_post" value="<?php echo __('Reply') ?>" /></p>
+<div id="new_post_form"></div>
 <div class="forumbg">
     <div class="inner"><span class="corners-top"><span></span></span>
         <ul class="posts">
@@ -22,7 +24,7 @@ $row_class = 'bg1';
                         <?php if (! $post->is_approved): ?>
                             <a href="{postrow.U_MCP_QUEUE}"><img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" /></a>
                         <?php endif; ?>
-                        <dfn class="first"><?php echo $post->title ?>
+                        <dfn class="first"><?php echo (empty($post->title) ? $post->Topic->title : $post->title) ?>
                             <span class="author"><?php echo __('by') ?> <?php echo _link($post->User)->set('.username') ?> &raquo; <?php echo format_datetime($post->created_at) ?></span>
                         </dfn>
                     </dt>

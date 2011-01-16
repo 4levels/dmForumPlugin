@@ -12,11 +12,5 @@
  */
 abstract class PluginDmForumPost extends BaseDmForumPost
 {
-  public function getTitle() {
-    if (!empty($this->title)) {
-      return $this->title;
-    } else {
-      return $this->Topic->title;
-    }
-  }
+  
 }

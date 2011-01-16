@@ -11,7 +11,7 @@ function addTopic(forum_id) {
     $("#new_topic_form").html(output);
 }
 
-function addPost(topic_id) {
+function addTopicPost(topic_id) {
     var output = $.ajax(
         {
             type: 'POST',
@@ -24,10 +24,23 @@ function addPost(topic_id) {
     $("#new_topic_form").html(output);
 }
 
+function addPost(topic_id) {
+    var output = $.ajax(
+        {
+            type: 'POST',
+            url: dm_configuration.script_name + '+/post/addReply',
+            data: 'topic_id=' + topic_id,
+            async: false
+        }
+    ).responseText;
+
+    $("#new_post_form").html(output);
+}
+
 function saveForumTopic() {
     var options = {
         target: '#new_topic_form',
-        success: showResponseTopic
+        success: showResponse
     };
     
     $("#add_topic_form").ajaxSubmit(options);
@@ -38,7 +51,7 @@ function saveForumTopic() {
 function saveForumPost() {
     var options = {
         target: '#new_topic_form',
-        success: showResponsePost
+        success: showResponse
     }
 
     $("#add_post_form").ajaxSubmit(options);
@@ -46,12 +59,19 @@ function saveForumPost() {
     return false;
 }
 
-function showResponseTopic(responseText, statusText, xhr, $form)  {
-    
+function saveForumTopicReply() {
+    var options = {
+        target: '#new_post_form',
+        success: showResponse
+    }
+
+    $("#add_reply_form").ajaxSubmit(options);
+
+    return false;
 }
 
-function showResponsePost(responseText, statusText, xhr, $form)  {
-
+function showResponse(responseText, statusText, xhr, $form)  {
+    
 }
 
 

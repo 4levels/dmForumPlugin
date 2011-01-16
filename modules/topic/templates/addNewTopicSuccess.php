@@ -3,7 +3,7 @@
 
 if ($sf_user->getFlash('topic_id')) { ?>
     <script type="text/javascript">
-        addPost(<?php echo $sf_user->getFlash('topic_id') ?>);
+        addTopicPost(<?php echo $sf_user->getFlash('topic_id') ?>);
     </script>
 <?php } else {
 

@@ -19,6 +19,9 @@ class postComponents extends myFrontModuleComponents
     $query = $this->getListQuery();
     
     $this->postPager = $this->getPager($query);
+
+    $post = $this->getRecord($query);
+    $this->topic = $post->getTopic();
   }
 
   public function executeShow()
