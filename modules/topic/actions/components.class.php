@@ -9,7 +9,7 @@ class topicComponents extends myFrontModuleComponents
 
   public function executeListByForum()
   {
-    $query = $this->getListQuery();
+    $query = $this->getListQuery()->orderBy('updated_at DESC');
     
     $this->topicPager = $this->getPager($query);
     
