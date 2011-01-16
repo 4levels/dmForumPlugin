@@ -24,4 +24,30 @@ class topicActions extends myFrontModuleActions
       $record->set('views', $record->views + 1)->save();
       
   }
+
+  public function executeAddNewTopic(dmWebRequest $request) {
+      $this->forward404Unless($request->isXmlHttpRequest());
+
+      $form = new DmForumTopicForm();
+
+      if ($request->hasParameter('forum_id')) {
+        $form->setDefault('forum_id', $request->getPostParameter('forum_id'));
+        $form->changeToHidden('forum_id');
+      }
+
+      $form->setDefault('user_id', $this->getUser()->getUserId());
+      $form->changeToHidden('user_id');
+
+      $form->setDefault('is_active', 1);
+      $form->changeToHidden('is_active');
+
+      if ($request->hasParameter($form->getName()) && $form->bindAndValid($request)) {
+          $form->save();
+
+          $this->getUser()->setFlash('topic_id', $form->getObject()->getId());
+      }
+
+      $this->form = $form;
+      
+  }
 }

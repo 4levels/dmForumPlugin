@@ -29,6 +29,12 @@ $nbModerators = $forum->Moderators;
                 <?php echo $moderators ?>
             </p>
         <?php endif; ?>
+        <p>
+            <input type="button" onclick="addTopic(<?php echo $forum->id ?>)" id="add_topic" value="<?php echo __('New Topic') ?>" />
+        </p>
+        <div id="new_topic_form">
+            
+        </div>
 </div>
 <?php endif; ?>
 <!-- ENDIF -->

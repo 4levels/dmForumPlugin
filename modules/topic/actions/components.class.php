@@ -36,7 +36,7 @@ class topicComponents extends myFrontModuleComponents
 
   public function executeForm()
   {
-    $this->form = $this->forms['DmForumTopic'];
+      $this->form = $this->forms['DmForumTopic'];
   }
 
 

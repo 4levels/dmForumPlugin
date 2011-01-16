@@ -2,3 +2,6 @@ default:
 
   stylesheets:
     - /dmForumPlugin/css/stylesheet.css
+
+  javascripts:
+    - /dmForumPlugin/js/dmForum.js
