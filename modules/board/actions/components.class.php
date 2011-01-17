@@ -14,5 +14,14 @@ class boardComponents extends myFrontModuleComponents
     $this->boardPager = $this->getPager($query);
   }
 
+  public function executeUserInfo() {
+      $userId = $this->getPage()->get('record_id');
+      $this->user = Doctrine::getTable('DmUser')->find($userId);
+  }
+
+  protected function getUserPostsQuery() {
+
+  }
+
 
 }
