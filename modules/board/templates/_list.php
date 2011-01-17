@@ -1,5 +1,7 @@
 <?php // Vars: $boardPager
-use_helper('Date')
+use_helper('Date');
+
+$root_dir = $sf_request->getRelativeUrlRoot();
 ?>
 
 <?php echo $boardPager->renderNavigationTop() ?>
@@ -35,10 +37,12 @@ use_helper('Date')
             <dd class="topics"><?php echo $forum->NbTopics ?> <dfn><?php echo __('Topics') ?></dfn></dd>
             <dd class="posts"><?php echo $forum->NbPosts ?> <dfn><?php echo __('Posts') ?></dfn></dd>
             <dd class="lastpost"><span>
-                <?php if ($forum->NbUnapprovedTopics) { ?><img src="/dmForumPlugin/images/icons/icon_topic_unapproved.gif" alt="<?php echo __('At least one topic is not apprived in this forum') ?>" /><?php } ?>
+                <?php if ($forum->NbUnapprovedTopics) { ?><img src="<?php echo $root_dir ?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" alt="<?php echo __('At least one topic is not approved in this forum') ?>" /><?php } ?>
                 <?php if ($forum->NbPosts) { ?>
-                <!-- IF forumrow.LAST_POST_TIME --><dfn><?php echo __('Last post') ?></dfn> <?php echo __('by') ?> <?php echo _link($forum->LastPost->UpdatedBy->id ? $forum->LastPost->UpdatedBy : $forum->LastPost->CreatedBy) ?>
-                <!-- IF not S_IS_BOT --><?php echo _link($forum->LastPost->Topic) ?> <!-- ENDIF --><br /><?php echo format_datetime($forum->LastPost->updated_at) ?>
+                <dfn><?php echo __('Last post') ?></dfn>
+                <?php echo _link($forum->LastPost->Topic) ?>
+                <?php echo __('by') ?> <?php echo _link($forum->LastPost->UpdatedBy->id ? $forum->LastPost->UpdatedBy : $forum->LastPost->CreatedBy) ?>
+                <br /><?php echo format_datetime($forum->lastPost->created_at, 'p') . ' ' . format_datetime($forum->lastPost->created_at, 'T') ?>
                 <?php } else { ?>
                 <?php echo __('No posts') ?><br />&nbsp;
                 <?php } ?>
