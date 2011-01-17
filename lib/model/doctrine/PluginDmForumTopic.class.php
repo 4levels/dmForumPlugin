@@ -39,6 +39,10 @@ abstract class PluginDmForumTopic extends BaseDmForumTopic
     return $this->getPostsQuery()->count();
   }
 
+  public function getNbUnapprovedPosts() {
+      return $this->getPostsQuery(false);
+  }
+
   public function getPostsQuery($isApproved = true) {
     $query = Doctrine_Core::getTable('DmForumPost')->createQuery('fp');
     $query->where($query->getRootAlias().'.is_active = ?', true)

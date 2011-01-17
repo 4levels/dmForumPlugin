@@ -114,6 +114,9 @@ $topic_type = '';
                     <dd class="lastpost">
                         <span>
                             <dfn><?php echo __('Last post') ?> </dfn>
+                            <?php if ($topic->nbUnapprovedPosts): ?>
+                                <img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" />
+                            <?php endif; ?>
                             <?php if ($topic->nbPosts): ?>
                                 <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
                                 <a href="<?php echo _link($topic)->getHref() ?>">

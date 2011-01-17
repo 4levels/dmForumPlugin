@@ -55,7 +55,7 @@ class topicActions extends myFrontModuleActions
           $topic = DmForumTopicTable::getInstance()->find($this->topicId);
           $topic->set('is_approved', true)->save();
           $this->topicApproved = true;
-      } elseif ($request->hasParameter('forbid')) {
+      } elseif ($request->hasParameter('delete')) {
           $topic = DmForumTopicTable::getInstance()->find($this->topicId);
           $topic->delete();
           $this->topicDeleted = true;
