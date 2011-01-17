@@ -46,15 +46,10 @@ Content:
       components:
         listByForum:
           filters:            [ forum ]
-        show:
-        form:
 
     post:
       model:                  DmForumPost
       name:                   Post
       components:
-        list:
         listByTopic:
           filters:            [ topic ]
-        show:
-        form:

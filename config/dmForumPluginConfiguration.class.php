@@ -21,15 +21,9 @@ class dmForumPluginConfiguration extends sfPluginConfiguration
 {
   /**
    * @see sfPluginConfiguration
+   */
   public function initialize()
   {
-    foreach (array('dmForumCategoryAdmin', 'dmForumForumAdmin') as $module)
-    {
-      if (in_array($module, sfConfig::get('sf_enabled_modules', array())))
-      {
-        $this->dispatcher->connect('routing.load_configuration', array('dmForumRouting', 'addRouteFor'.str_replace('dmForum', '', $module)));
-      }
-    }
+      
   }
-   */
 }
