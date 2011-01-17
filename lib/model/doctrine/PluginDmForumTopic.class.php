@@ -13,7 +13,7 @@
 abstract class PluginDmForumTopic extends BaseDmForumTopic
 {
   public function getLastPost() {
-    return Doctrine::getTable('DmForumPost')->createQuery('p')
+    $result = Doctrine::getTable('DmForumPost')->createQuery('p')
            ->select('p.*, u.username')
            ->leftJoin('p.User u')
            ->where('p.is_active = ?', true)
@@ -21,6 +21,7 @@ abstract class PluginDmForumTopic extends BaseDmForumTopic
            ->andWhere('p.is_approved = ?', true)
            ->orderBy('p.created_at')
            ->fetchOne();
+    return $result;
   }
 
   public function getLastUpdatedPost() {

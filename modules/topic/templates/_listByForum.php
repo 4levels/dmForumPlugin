@@ -79,11 +79,11 @@ $topic_type = '';
                     <dd class="lastpost">
                         <span>
                             <dfn><?php echo __('Last post') ?> </dfn>
-                            <?php echo __('by') ?> <?php echo _link($topic->lastPost->User)->set('.username') ?>
+                            <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
                             <a href="<?php echo _link($topic)->getHref() ?>">
                                 <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
                             </a>
-                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->lastPost->created_at, 'T') ?>
+                            <br /><?php echo format_datetime($topic->LastPost->created_at, 'p') . ' ' . format_datetime($topic->LastPost->created_at, 'T') ?>
                         </span>
                     </dd>
 		</dl>
@@ -114,11 +114,15 @@ $topic_type = '';
                     <dd class="lastpost">
                         <span>
                             <dfn><?php echo __('Last post') ?> </dfn>
-                            <?php echo __('by') ?> <?php echo _link($topic->lastPost->User)->set('.username') ?>
-                            <a href="<?php echo _link($topic)->getHref() ?>">
-                                <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
-                            </a>
-                            <br /><?php echo format_datetime($topic->lastPost->created_at, 'p') . ' ' . format_datetime($topic->lastPost->created_at, 'T') ?>
+                            <?php if ($topic->nbPosts): ?>
+                                <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
+                                <a href="<?php echo _link($topic)->getHref() ?>">
+                                    <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
+                                </a>
+                                <br /><?php echo format_datetime($topic->LastPost->created_at, 'p') . ' ' . format_datetime($topic->LastPost->created_at, 'T') ?>
+                            <?php else:
+                                echo __('No posts');
+                            endif; ?>
                         </span>
                     </dd>
 		</dl>
