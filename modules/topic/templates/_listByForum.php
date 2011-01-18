@@ -78,12 +78,15 @@ $topic_type = '';
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
                     <dd class="lastpost">
                         <span>
-                            <dfn><?php echo __('Last post') ?> </dfn>
-                            <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
-                            <a href="<?php echo _link($topic)->getHref() ?>">
-                                <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
-                            </a>
-                            <br /><?php echo format_datetime($topic->LastPost->created_at, 'p') . ' ' . format_datetime($topic->LastPost->created_at, 'T') ?>
+                            <?php if ($topic->nbPosts): ?>
+                                <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
+                                <a href="<?php echo _link($topic)->getHref() ?>">
+                                    <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
+                                </a>
+                                <br /><?php echo format_datetime($topic->LastPost->created_at, 'p') . ' ' . format_datetime($topic->LastPost->created_at, 'T') ?>
+                            <?php else:
+                                echo __('No posts');
+                            endif; ?>
                         </span>
                     </dd>
 		</dl>
@@ -104,15 +107,10 @@ $topic_type = '';
                                 <img alt="<?php echo __('Unapproved') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_topic_unapproved.gif" />
                             </a>
                         <?php endif; ?>
-                        <?php if ($topic->nbPosts): ?>
-                                <?php echo __('by') ?> <?php echo _link($topic->LastPost->User)->set('.username') ?>
-                                <a href="<?php echo _link($topic)->getHref() ?>">
-                                    <img alt="<?php echo __('Read latest post') ?>" src="<?php echo $root_dir?>/dmForumPlugin/images/icons/icon_post_target.gif" />
-                                </a>
-                                <br /><?php echo format_datetime($topic->LastPost->created_at, 'p') . ' ' . format_datetime($topic->LastPost->created_at, 'T') ?>
-                            <?php else:
-                                echo __('No posts');
-                            endif; ?>
+                        <br />
+			<?php echo __('by') ?>&nbsp;
+                        <?php echo _link($topic->User)->set('.username') ?> &raquo;
+                        <?php echo format_datetime($topic->created_at, 'p') . ' ' . format_datetime($topic->created_at, 'T') ?>
                     </dt>
                     <dd class="posts"><?php echo $topic->nbPosts ?> <dfn><?php echo __('Replies') ?></dfn></dd>
                     <dd class="views"><?php echo $topic->views ?> <dfn><?php echo __('Views') ?></dfn></dd>
