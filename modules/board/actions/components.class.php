@@ -19,9 +19,5 @@ class boardComponents extends myFrontModuleComponents
       $this->user = Doctrine::getTable('DmUser')->find($userId);
   }
 
-  protected function getUserPostsQuery() {
-
-  }
-
 
 }

@@ -10,7 +10,7 @@ System:
         signin:
         form:           { name: "Register" }
         forgotPassword:
-        dashboard:
+        #dashboard:
         info:
 
 Content:
